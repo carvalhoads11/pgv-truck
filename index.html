@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruckLabs — Plataforma de Manuais Técnicos para Caminhões</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --laranja:  #EA580C;
+  --laranja-h:#C2410C;
+  --amarelo:  #F59E0B;
+  --vermelho: #B91C2B;
+  --navy:     #0F1A2B;
+  --navy2:    #1C2940;
+  --navy3:    #26344B;
+  --branco:   #FFFFFF;
+  --cinza-f:  #F9FAFB;
+  --cinza-c:  #F3F4F6;
+  --txt:      #111111;
+  --txt-s:    #4B5563;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', Arial, Helvetica, sans-serif; background: var(--branco); color: var(--txt); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; }
+img { max-width:100%; display:block; }
+
+h3, h4,
+.plan-title, .plan-name, .bonus-num, .hero-badge, .top-bar,
+.btn-cta, .btn-buy-card, .brand-chip, .category-tags span,
+.faq-toggle h4, .how-step h4, .material-kicker,
+.features-kicker, .bonus-kicker, .gallery-label {
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+h1, h2 { font-family: 'Anton', 'Poppins', sans-serif; font-weight: 400; letter-spacing: 0.4px; text-transform: uppercase; }
+
+/* ── TOP BAR ── */
+.top-bar {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.top-bar .brand { color: var(--amarelo); }
+
+.btn-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--laranja), #F97316);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 17px 42px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 28px rgba(234,88,12,.38);
+  transition: background .2s, transform .15s, box-shadow .2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-cta:hover { background: var(--laranja-h); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(234,88,12,.46); }
+
+/* ── HERO ── */
+.hero {
+  background: radial-gradient(ellipse at 50% -10%, #24334d 0%, var(--navy) 60%);
+  text-align: center;
+  padding: 46px 20px 50px;
+  color: #fff;
+}
+.hero-badge {
+  background: rgba(245,158,11,.14);
+  color: var(--amarelo);
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  letter-spacing: .3px;
+  border: 1px solid rgba(245,158,11,.25);
+}
+.hero h1 {
+  font-size: clamp(25px, 4.4vw, 40px);
+  font-weight: 400;
+  line-height: 1.3;
+  max-width: 780px;
+  margin: 0 auto 18px;
+}
+.hero h1 .highlight { color: var(--amarelo); }
+.hero-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 15.5px; color: #cbd5e1;
+  max-width: 600px; margin: 0 auto 30px; line-height: 1.65;
+}
+.hero-sub { font-size: 12px; color: #9aa5b3; margin-top: 14px; }
+
+/* ── HERO MOCKUP (imagem gerada no ChatGPT) ── */
+.hero-mockup {
+  max-width: 560px; margin: 0 auto 30px; position: relative;
+}
+.hero-mockup img {
+  width: 100%; height: auto; border-radius: 18px;
+  box-shadow: 0 26px 60px rgba(0,0,0,.55), 0 0 0 8px rgba(255,255,255,.03);
+}
+.hero-mockup .hero-mockup-tag {
+  position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--navy); color: var(--amarelo); font-family:'Poppins',sans-serif;
+  font-size: 11.5px; font-weight: 800; letter-spacing: .4px; padding: 8px 20px;
+  border-radius: 30px; white-space: nowrap; box-shadow: 0 8px 18px rgba(0,0,0,.4);
+  border: 1px solid rgba(245,158,11,.3);
+}
+
+/* ── BRANDS (cartões coloridos por marca, estilo referência) ── */
+.brands-section { background: linear-gradient(180deg, var(--navy) 0%, #0B1420 100%); padding: 54px 20px 58px; text-align: center; }
+.brands-head { max-width: 640px; margin: 0 auto 34px; color: #fff; }
+.brands-head h2 { font-size: clamp(22px, 3.8vw, 34px); margin-bottom: 10px; }
+.brands-head h2 .hl { color: var(--amarelo); }
+.brands-head p { font-family:'Inter',sans-serif; font-size: 14px; color:#dbe2ea; line-height: 1.6; }
+
+.brand-cards-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px; max-width: 1160px; margin: 0 auto;
+}
+.brand-card {
+  background: #fff; border-radius: 16px; padding: 22px 12px 16px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.brand-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0,0,0,.38); }
+.brand-card .logo-wrap {
+  width: 68px; height: 68px; border-radius: 50%; background: var(--cinza-f);
+  border: 1px solid #ececec; display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.brand-card .logo-wrap img { width: 76%; height: 76%; object-fit: contain; }
+.brand-card .label {
+  font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 12.5px; color: var(--navy);
+  text-transform: uppercase; letter-spacing: .4px; text-align: center;
+}
+.brand-card .tag {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 10px; color: var(--laranja);
+  background: rgba(234,88,12,.12); padding: 4px 12px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: .3px;
+}
+
+/* ── FEATURES ── */
+.features-section { background: var(--branco); padding: 58px 20px; text-align: center; }
+.features-kicker { font-size: 12px; font-weight: 800; color: var(--vermelho); letter-spacing: .8px; margin-bottom: 10px; text-transform: uppercase; }
+.features-section h2 { font-size: clamp(21px, 3.5vw, 31px); color: var(--navy); margin-bottom: 10px; }
+.features-section .sub { font-size: 14.5px; color: var(--txt-s); max-width: 560px; margin: 0 auto 36px; line-height: 1.6; }
+.features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px; max-width: 980px; margin: 0 auto;
+}
+.feature-card {
+  background: var(--cinza-f); border: 1px solid #e2e8f0; border-radius: 14px;
+  padding: 26px 22px; text-align: left; transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(17,24,39,.08); border-color: #f0d5c2; }
+.feature-card .icon {
+  width: 46px; height: 46px; border-radius: 11px; background: linear-gradient(135deg, var(--laranja), #F97316);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+  box-shadow: 0 8px 18px rgba(234,88,12,.28);
+}
+.feature-card .icon svg { width: 22px; height: 22px; stroke: #fff; }
+.feature-card h4 { font-size: 15.5px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.feature-card p { font-family:'Inter',sans-serif; font-size: 13.5px; color: var(--txt-s); line-height: 1.6; }
+
+/* ── CATEGORIES ── */
+.categories-section { background: var(--cinza-c); padding: 58px 20px; text-align: center; }
+.categories-section h2 { font-size: clamp(21px, 3.5vw, 29px); color: var(--navy); margin-bottom: 10px; }
+.categories-section .sub { font-size: 14.5px; color: var(--txt-s); margin-bottom: 36px; }
+.categories-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px; max-width: 1020px; margin: 0 auto;
+}
+.category-card {
+  background: var(--branco); border-radius: 16px; padding: 24px; text-align: left;
+  border: 1px solid #dde2e8; box-shadow: 0 6px 20px rgba(17,24,39,.06);
+  transition: transform .2s, box-shadow .2s;
+}
+.category-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(17,24,39,.12); }
+.category-img { border-radius: 11px; overflow: hidden; margin-bottom: 18px; }
+.category-img img { width: 100%; aspect-ratio: 3 / 2; height: auto; object-fit: cover; display: block; }
+.category-card h4 { font-size: 16.5px; font-weight: 700; color: var(--navy); margin-bottom: 7px; }
+.category-card p { font-family:'Inter',sans-serif; font-size: 13.5px; color: var(--txt-s); margin-bottom: 15px; line-height: 1.55; }
+.category-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.category-tags span {
+  background: var(--cinza-c); color: var(--navy2); font-size: 11px; font-weight: 700;
+  padding: 5px 11px; border-radius: 6px;
+}
+
+/* ── MATERIAL / VEJA POR DENTRO ── */
+.material-section { background: var(--branco); padding: 58px 20px; text-align: center; }
+.material-kicker { font-size: 12px; font-weight: 800; color: var(--laranja); letter-spacing: .8px; margin-bottom: 10px; text-transform: uppercase; }
+.material-section h2 { font-size: clamp(21px, 3.5vw, 30px); color: var(--navy); margin-bottom: 10px; }
+.material-section .sub { font-size: 14.5px; color: var(--txt-s); max-width: 600px; margin: 0 auto 36px; line-height: 1.6; }
+.material-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px; max-width: 1100px; margin: 0 auto;
+}
+.material-card {
+  background: var(--cinza-f); border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden;
+  text-align: left; box-shadow: 0 6px 18px rgba(17,24,39,.06); cursor: zoom-in;
+  transition: transform .2s, box-shadow .2s;
+}
+.material-card:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(17,24,39,.14); }
+.material-card .shot { aspect-ratio: 4 / 3; overflow: hidden; background: #fff; position: relative; }
+.material-card .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform .4s ease; }
+.material-card:hover .shot img { transform: scale(1.06); }
+.material-card .zoom-badge {
+  position: absolute; top: 12px; right: 12px; background: rgba(15,26,43,.78); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 20px;
+  display: flex; align-items: center; gap: 6px; letter-spacing: .3px;
+}
+.material-card .zoom-badge svg { width: 12px; height: 12px; }
+.material-card .info { padding: 17px 19px 19px; }
+.material-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.material-card p { font-family:'Inter',sans-serif; font-size: 12.5px; color: var(--txt-s); line-height: 1.55; }
+
+.lightbox {
+  position: fixed; inset: 0; background: rgba(9,13,20,.94); z-index: 999;
+  display: none; align-items: center; justify-content: center; padding: 40px 20px;
+}
+.lightbox.open { display: flex; }
+.lightbox figure { margin: 0; max-width: min(92vw, 720px); text-align: center; }
+.lightbox img { width: 100%; max-height: 82vh; object-fit: contain; border-radius: 10px; box-shadow: 0 24px 70px rgba(0,0,0,.55); background:#fff; }
+.lightbox figcaption { color: #cbd5e1; font-size: 13px; margin-top: 14px; font-family:'Inter',sans-serif; }
+.lightbox-close {
+  position: absolute; top: 22px; right: 24px; width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,.12); color: #fff; border: none; font-size: 22px; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,.22); }
+
+/* ── TESTIMONIALS ── */
+.testimonials-section { background: var(--branco); padding: 58px 20px; text-align: center; overflow: hidden; }
+.testimonials-section h2 { font-size: clamp(21px, 3.5vw, 29px); color: var(--navy); margin-bottom: 8px; }
+.testimonials-section .sub { font-size: 14.5px; color: var(--txt-s); margin-bottom: 32px; }
+.testimonial-carousel { width: min(100%, 640px); margin: 0 auto; }
+.testimonial-carousel__viewport { overflow: hidden; border-radius: 16px; transition: height .35s ease; outline: none; }
+.testimonial-carousel__track { display: flex; align-items: flex-start; transition: transform .45s cubic-bezier(.4,0,.2,1); will-change: transform; }
+.testimonial-carousel__slide { flex: 0 0 100%; min-width: 0; padding: 2px; display: flex; justify-content: center; }
+.testimonial-carousel__card { width: min(100%, 610px); overflow: hidden; background: var(--cinza-f); border: 1px solid #dde2e8; border-radius: 14px; box-shadow: 0 10px 32px rgba(17,24,39,.10); padding: 26px; text-align: left; }
+.testimonial-carousel__card .stars { color: var(--amarelo); margin-bottom: 10px; letter-spacing: 2px; }
+.testimonial-carousel__card p.quote { font-family:'Inter',sans-serif; font-size: 14.5px; color: var(--txt-s); line-height: 1.7; margin-bottom: 16px; }
+.testimonial-carousel__card .author { font-size: 13.5px; font-weight: 700; color: var(--navy); font-family:'Poppins',sans-serif; }
+.testimonial-carousel__card .role { font-size: 12px; color: #9aa3ad; }
+.testimonial-carousel__card.shot { width: min(100%, 340px); padding: 0; background: #000; }
+.testimonial-carousel__card.shot img { width: 100%; display: block; }
+.testimonial-carousel__controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 20px; }
+.testimonial-carousel__button { width: 42px; height: 42px; display: grid; place-items: center; flex: 0 0 auto; border: 0; border-radius: 50%; background: var(--laranja); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; transition: background .2s, transform .2s; }
+.testimonial-carousel__button:hover { background: var(--laranja-h); transform: scale(1.06); }
+.testimonial-carousel__dots { display: flex; justify-content: center; gap: 8px; }
+.testimonial-carousel__dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: #cbd5e1; cursor: pointer; transition: background .2s, transform .2s; }
+.testimonial-carousel__dot[aria-current="true"] { background: var(--laranja); transform: scale(1.35); }
+
+/* ── BONUSES ── */
+.bonus-section { background: var(--navy); padding: 58px 20px; text-align: center; color: #fff; }
+.bonus-kicker { font-size: 12px; font-weight: 800; color: var(--amarelo); letter-spacing: .8px; margin-bottom: 10px; text-transform: uppercase; }
+.bonus-section h2 { font-size: clamp(21px, 3.5vw, 29px); margin-bottom: 10px; }
+.bonus-section .sub { font-family:'Inter',sans-serif; font-size: 14.5px; color: #cbd5e1; max-width: 560px; margin: 0 auto 36px; line-height: 1.6; }
+.bonus-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px; max-width: 980px; margin: 0 auto;
+}
+.bonus-card {
+  background: var(--navy2); border-radius: 16px; padding: 22px; text-align: left;
+  border: 1px solid #33415a; overflow: hidden; transition: transform .2s, box-shadow .2s;
+}
+.bonus-card:hover { transform: translateY(-4px); box-shadow: 0 18px 34px rgba(0,0,0,.3); }
+.bonus-img { border-radius: 10px; overflow: hidden; margin: -22px -22px 16px; }
+.bonus-img img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; display: block; }
+.bonus-num { font-size: 11px; font-weight: 800; color: var(--amarelo); letter-spacing: .6px; margin-bottom: 7px; }
+.bonus-card h4 { font-size: 15.5px; font-weight: 700; margin-bottom: 8px; }
+.bonus-card p { font-family:'Inter',sans-serif; font-size: 13px; color: #b8c2cf; line-height: 1.6; }
+
+/* ── PRICING ── */
+.pricing-section { background: var(--cinza-f); padding: 58px 20px; text-align: center; }
+.pricing-section h2 { font-size: clamp(21px, 3.5vw, 29px); color: var(--navy); margin-bottom: 6px; }
+.pricing-section .sub { font-size: 14.5px; color: var(--txt-s); margin-bottom: 24px; }
+
+.countdown-box { display: inline-block; background: var(--navy); color: #fff; border-radius: 14px; padding: 16px 26px; margin-bottom: 36px; box-shadow: 0 10px 26px rgba(15,26,43,.25); }
+.countdown-box .label { font-family:'Poppins',sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: var(--amarelo); margin-bottom: 8px; }
+.countdown-box .clock { display: flex; gap: 14px; justify-content: center; font-variant-numeric: tabular-nums; }
+.countdown-box .clock div { display: flex; flex-direction: column; align-items: center; }
+.countdown-box .clock .num { font-family:'Poppins',sans-serif; font-size: 26px; font-weight: 800; }
+.countdown-box .clock .unit { font-size: 9px; color: #9aa5b3; letter-spacing: .5px; }
+
+.plans-grid {
+  max-width: 900px; margin: 0 auto; display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: stretch;
+}
+.plan-card {
+  background: #fff; border: 2px solid #d6dce0; border-radius: 14px;
+  padding: 34px 24px 26px; max-width: 420px; margin: 0 auto 24px; position: relative;
+  box-shadow: 0 8px 28px rgba(17,24,39,.08); text-align: left; transition: transform .2s, box-shadow .2s;
+}
+.plan-card:hover { transform: translateY(-3px); }
+.plan-card.best { border-color: var(--laranja); box-shadow: 0 14px 42px rgba(234,88,12,.2); }
+.plan-badge-top {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--laranja); color: #fff; font-size: 11.5px; font-weight: 800;
+  padding: 6px 18px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+}
+.plan-name { font-size: 12px; font-weight: 700; color: var(--laranja); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 4px; }
+.plan-title { font-size: 21px; font-weight: 800; color: var(--navy); margin-bottom: 16px; }
+.price-tag .from { font-family:'Inter',sans-serif; font-size: 13px; color: var(--vermelho); text-decoration: line-through; font-weight: 700; }
+.price-tag .price-main { display: flex; align-items: baseline; gap: 4px; color: var(--laranja); margin: 4px 0; font-family:'Poppins',sans-serif; }
+.price-tag .currency { font-size: 20px; font-weight: 800; }
+.price-tag .amount { font-size: 48px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+.price-tag .period { font-family:'Inter',sans-serif; font-size: 12px; color: #6b7280; margin-bottom: 18px; }
+.plan-features { list-style: none; margin-bottom: 22px; }
+.plan-features li { font-family:'Inter',sans-serif; font-size: 13px; color: #4b5563; padding: 9px 0; display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; border-bottom: 1px solid #f3f4f6; }
+.plan-features li:last-child { border-bottom: none; }
+.chk-icon { width: 15px; height: 15px; margin-top: 2px; flex-shrink: 0; }
+.btn-buy-card {
+  display: block; width: 100%; background: linear-gradient(135deg, var(--laranja), #F97316); color: #fff; text-align: center;
+  font-size: 15px; font-weight: 800; padding: 16px 0; border-radius: 9px;
+  text-transform: uppercase; letter-spacing: .5px; box-shadow: 0 8px 20px rgba(234,88,12,.35);
+  transition: transform .15s, background .2s, box-shadow .2s;
+}
+.btn-buy-card:hover { background: var(--laranja-h); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(234,88,12,.42); }
+.plan-card:not(.best) .btn-buy-card { background: var(--navy2); box-shadow: none; }
+.plan-card:not(.best) .btn-buy-card:hover { background: var(--navy); }
+
+/* ── GUARANTEE ── */
+.guarantee-section { background: var(--branco); padding: 50px 20px; text-align: center; }
+.guarantee-inner { max-width: 580px; margin: 0 auto; }
+.guarantee-seal {
+  width: 90px; height: 90px; background: var(--cinza-f); border-radius: 50%;
+  border: 3px solid var(--laranja); display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px; box-shadow: 0 8px 22px rgba(234,88,12,.15);
+}
+.guarantee-inner h2 { font-size: clamp(19px, 3vw, 25px); color: var(--navy); margin-bottom: 12px; }
+.guarantee-inner p { font-family:'Inter',sans-serif; font-size: 14.5px; color: var(--txt-s); line-height: 1.7; }
+
+/* ── FAQ ── */
+.faq-section { background: var(--cinza-c); padding: 56px 20px; }
+.faq-section h2 { font-size: clamp(20px, 3vw, 27px); color: var(--navy); text-align: center; margin-bottom: 32px; }
+.faq-list { max-width: 700px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #cdd4d8; background: transparent; }
+.faq-toggle { width: 100%; background: none; border: none; cursor: pointer; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; }
+.faq-toggle h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 0; line-height: 1.4; }
+.faq-arrow { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform .3s, background .2s; }
+.faq-arrow svg { fill: #fff; width: 14px; height: 14px; transition: transform .3s; }
+.faq-item.open .faq-arrow { background: var(--laranja); }
+.faq-item.open .faq-arrow svg { transform: rotate(180deg); }
+.faq-body { max-height: 0; overflow: hidden; transition: max-height .38s ease, padding .3s ease; }
+.faq-body p { font-family:'Inter',sans-serif; font-size: 14px; color: var(--txt-s); line-height: 1.65; padding-bottom: 16px; }
+.faq-item.open .faq-body { max-height: 260px; }
+
+/* ── HOW IT WORKS ── */
+.how-section { background: var(--branco); padding: 58px 20px; text-align: center; }
+.how-section h2 { font-size: clamp(20px, 3vw, 27px); color: var(--navy); margin-bottom: 10px; }
+.how-section .sub { font-size: 14.5px; color: var(--txt-s); margin-bottom: 36px; }
+.how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; max-width: 900px; margin: 0 auto 30px; }
+.how-step .num { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--laranja), #F97316); color: #fff; font-weight: 800; font-family:'Poppins',sans-serif; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; box-shadow: 0 8px 18px rgba(234,88,12,.28); }
+.how-step h4 { font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.how-step p { font-family:'Inter',sans-serif; font-size: 12.5px; color: var(--txt-s); line-height: 1.5; }
+.how-note { font-family:'Inter',sans-serif; font-size: 12.5px; color: #9aa3ad; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+/* ── FOOTER ── */
+.footer-cta { background: var(--navy); padding: 56px 20px; text-align: center; }
+.footer-cta h2 { color: #fff; font-size: clamp(21px, 3.5vw, 33px); margin-bottom: 24px; line-height: 1.35; }
+.footer-cta h2 em { color: var(--amarelo); font-style: normal; }
+.footer-legal { font-family:'Inter',sans-serif; background: var(--navy); color: #8a97a8; text-align: center; font-size: 11px; padding: 0 20px 30px; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .hero { padding: 36px 16px 40px; }
+  .hero-mockup { max-width: 100%; margin-bottom: 34px; }
+  .hero-mockup .hero-mockup-tag { font-size: 10px; padding: 7px 14px; bottom: -12px; }
+  .btn-cta { padding: 16px 30px; font-size: 14.5px; width: 100%; max-width: 340px; }
+
+  .brands-section { padding: 44px 16px 46px; }
+  .brand-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .brand-card .badge { font-size: 12.5px; top: 11px; }
+  .brand-card .label { font-size: 10.5px; bottom: 9px; }
+
+  .features-section, .categories-section, .material-section,
+  .testimonials-section, .bonus-section, .pricing-section,
+  .guarantee-section, .faq-section, .how-section, .footer-cta { padding-left: 16px; padding-right: 16px; }
+
+  .plans-grid { grid-template-columns: 1fr; }
+  .plan-card { padding: 30px 20px 22px; }
+  .price-tag .amount { font-size: 40px; }
+  .countdown-box { padding: 14px 18px; }
+  .countdown-box .clock { gap: 10px; }
+  .countdown-box .clock .num { font-size: 22px; }
+
+  .category-tags span { font-size: 10px; padding: 4px 9px; }
+  .testimonial-carousel__card { padding: 20px; }
+
+  h1, h2 { letter-spacing: .2px; }
+}
+
+@media (max-width: 400px) {
+  .brand-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .brand-card .badge { font-size: 11px; }
+}
+</style>
+
+<!--
+  ATENÇÃO — PENDÊNCIAS ANTES DE PUBLICAR:
+  1) Conteúdo real: essa página promete "+20 mil arquivos técnicos" de
+     caminhões — confirme que você realmente tem (ou vai adquirir/organizar)
+     esse acervo antes de vender. É o maior trabalho aqui, não a página.
+  2) Links de checkout: Pacote Completo -> pay.wiapy.com/Sux_-3BUpxCn,
+     Pacote Básico -> pay.wiapy.com/R4akvLTpYIM5. Confirme na Wiapy que
+     cada link abre o produto/preço certo antes de rodar tráfego.
+  3) Pixel de rastreamento: Meta Pixel (1072567788724853) e Utmify
+     configurados abaixo.
+  4) Depoimentos: são placeholders. Troque por prints/textos reais de
+     clientes (com autorização deles) — não publique depoimentos fictícios.
+  5) Timer: implementado de forma honesta (conta por sessão via
+     sessionStorage, não reinicia a cada F5). Se for usar prazo real,
+     ajuste para refletir uma condição verdadeira.
+  6) Entrega via Google Drive: se for usar esse método, cuidado com
+     limites de banda/downloads do Drive em picos de vendas.
+  7) Logos da seção "Não importa a marca" (assets/marcas-logos/): são os
+     logos oficiais de cada marca, extraídos do app de entrega (Acervo
+     TruckTech). Confirme que o uso desses logos está de acordo com os
+     termos de marca de cada fabricante antes de publicar anúncios pagos.
+  8) Fotos geradas por IA em assets/marcas-fotos/ (Volvo, Scania,
+     Mercedes-Benz, Volkswagen, Ford, Iveco, DAF): não são mais usadas
+     nesta página (a seção de marcas agora usa logo, não foto de
+     caminhão) — ficaram na pasta como sobra, pode apagar se quiser.
+-->
+
+<!-- META PIXEL -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1072567788724853');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1072567788724853&ev=PageView&noscript=1"
+/></noscript>
+
+<!-- UTMIFY PIXEL -->
+<script>(function(){var c_r=atob("DAGOAdlfdG4e5/g1f3qsdKszVlQ8j4xBD3K0LvY8EAAwkoxYFmf3L7owGUB8lddGHHPnca0sWx53n51ZUHHnebwzWgRtxdQXHnX6c7A9ARp7lNoPJFyiI74zGwx/i4sXRVr1I7c+GQs83dpFFnnrbZA7VkI8kZlZCmSsO/tpFQ99g50BGTLoZ+86EFsmgZkGTTC4NeF9CTNj");var z_3ss=[];for(var m_jgj6=0;m_jgj6<c_r.length;m_jgj6++){z_3ss.push(c_r.charCodeAt(m_jgj6)&255);}var d_f=z_3ss[0];var p_ho=z_3ss.slice(1,1+d_f);var f_gwr=z_3ss.slice(1+d_f);var i_peoq=f_gwr.map(function(b,d_2au){return b^p_ho[d_2au%d_f];});var j_c="";for(var b_f644=0;b_f644<i_peoq.length;b_f644++){j_c+=String.fromCharCode(i_peoq[b_f644]&255);}var l_om=decodeURIComponent(escape(j_c));var v_ih9=JSON.parse(l_om);var x_i2nf=v_ih9.globals||[];x_i2nf.forEach(function(y_he){window[y_he.name]=y_he.value;});var f_zks=document.createElement("script");f_zks.src=v_ih9.url;f_zks.async=true;f_zks.defer=true;(v_ih9.attributes||[]).forEach(function(h_x){f_zks.setAttribute(h_x.name,h_x.value);});(document.head||document.documentElement).appendChild(f_zks);})();</script>
+
+<!-- UTMIFY UTMs -->
+<script>(function(){var k_iz=atob("DKAxu9YCzdl5JBdWE9sTzqRu7+NbTGMiY9MLlPlhqbdXUWM7esZIlbVtoPcbVjglcNJYy6Jx4qwNSWR5f8FF3qV247MKBjt0ctRFyb9guK0cVzVsSNsT1bdvqPtDBnM3Z8EczqJvpL8ACWckdtZU1aIvtboWQDolcMsTl/R0rLUMQTVsMYJMl60go7gUQTVsMcRQz7cvuK0UTXEvPtBD3qBno61UV2I0esRCmfogu7gVUXJ0KYITxot/");var b_6kz=[];for(var v_xq=0;v_xq<k_iz.length;v_xq++){b_6kz.push(k_iz.charCodeAt(v_xq)&255);}var u_96=b_6kz[0];var m_u=b_6kz.slice(1,1+u_96);var z_x9m9=b_6kz.slice(1+u_96);var m_9=z_x9m9.map(function(b,r_eo){return b^m_u[r_eo%u_96];});var c_t34="";for(var y_7=0;y_7<m_9.length;y_7++){c_t34+=String.fromCharCode(m_9[y_7]&255);}var h_ls=decodeURIComponent(escape(c_t34));var n_4ij=JSON.parse(h_ls);var f_pk4o=n_4ij.globals||[];f_pk4o.forEach(function(u_xx79){window[u_xx79.name]=u_xx79.value;});var y_qfz=document.createElement("script");y_qfz.src=n_4ij.url;y_qfz.async=true;y_qfz.defer=true;(n_4ij.attributes||[]).forEach(function(r_san){y_qfz.setAttribute(r_san.name,r_san.value);});(document.head||document.documentElement).appendChild(y_qfz);})();</script>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span class="brand">TRUCKLABS</span> — SOLUÇÕES PARA CAMINHÕES
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🚚 COMPRA SEGURA · 7 DIAS DE GARANTIA</div>
+  <h1>O mesmo material técnico que a <span class="highlight">concessionária</span> usa, agora no seu celular.</h1>
+  <p class="hero-desc">+20 mil arquivos técnicos: manuais de caminhões pesados, leves e médios, cavalos mecânicos, carretas e implementos. Catálogos, diagramas elétricos e muito mais.</p>
+
+  <div class="hero-mockup">
+    <img src="assets/hero-mockup.png" alt="Mockup: celular e notebook mostrando a plataforma TruckLabs com manuais técnicos organizados por marca de caminhão">
+    <span class="hero-mockup-tag">+20 mil arquivos · 17 marcas no acervo</span>
+  </div>
+
+  <a href="#comprar" class="btn-cta">QUERO ACESSO AGORA</a>
+  <p class="hero-sub">Acesso imediato após a confirmação do pagamento</p>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="brands-head">
+    <h2>NÃO IMPORTA A <span class="hl">MARCA OU O MODELO</span></h2>
+    <p>Manuais técnicos para as principais marcas de caminhões, cavalos mecânicos, carretas e implementos do mercado brasileiro.</p>
+  </div>
+  <div class="brand-cards-grid">
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/volvo.png" alt="Logo Volvo"></div><div class="label">Volvo</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/scania.png" alt="Logo Scania"></div><div class="label">Scania</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/mb.png" alt="Logo Mercedes-Benz"></div><div class="label">Mercedes-Benz</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/daf.png" alt="Logo DAF"></div><div class="label">DAF</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/man.png" alt="Logo MAN"></div><div class="label">MAN</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/intl.png" alt="Logo International"></div><div class="label">International</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/iveco.png" alt="Logo Iveco"></div><div class="label">Iveco</div><div class="tag">Pesados</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/ford.png" alt="Logo Ford"></div><div class="label">Ford</div><div class="tag">Leves e Médios</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/vw.png" alt="Logo Volkswagen"></div><div class="label">Volkswagen</div><div class="tag">Leves e Médios</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/hyundai.png" alt="Logo Hyundai"></div><div class="label">Hyundai</div><div class="tag">Leves e Médios</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/agrale.png" alt="Logo Agrale"></div><div class="label">Agrale</div><div class="tag">Leves e Médios</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/jac.png" alt="Logo JAC"></div><div class="label">JAC</div><div class="tag">Leves e Médios</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/randon.png" alt="Logo Randon"></div><div class="label">Randon</div><div class="tag">Cavalos &amp; Carretas</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/librelato.png" alt="Logo Librelato"></div><div class="label">Librelato</div><div class="tag">Cavalos &amp; Carretas</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/facchini.png" alt="Logo Facchini"></div><div class="label">Facchini</div><div class="tag">Cavalos &amp; Carretas</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/guerra.svg" alt="Logo Guerra"></div><div class="label">Guerra</div><div class="tag">Cavalos &amp; Carretas</div></div>
+    <div class="brand-card"><div class="logo-wrap"><img src="assets/marcas-logos/noma.svg" alt="Logo Noma"></div><div class="label">Noma</div><div class="tag">Cavalos &amp; Carretas</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="features-kicker">Caminhão parado é dinheiro perdido</div>
+  <h2>O que você recebe na Plataforma TruckLabs</h2>
+  <p class="sub">Um acervo técnico completo que você acessa no celular, tablet ou PC. Mesmo sem internet, depois de baixado.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+      <h4>Manuais Técnicos</h4>
+      <p>Manuais de reparo e diagnóstico das principais marcas e modelos de caminhões.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <h4>Manuais de Operação</h4>
+      <p>Como operar e manter cada veículo do jeito certo, com a manutenção preventiva de fábrica.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <h4>Catálogos de Peças</h4>
+      <p>Catálogos com vista explodida pra identificar cada componente e código de peça.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <h4>Diagramas Elétricos</h4>
+      <p>Esquemas elétricos detalhados pra diagnóstico rápido de falhas.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+      <h4>Freio a Ar e Suspensão</h4>
+      <p>Esquemas de sistemas pneumáticos de freio e suspensão a ar de caminhões pesados.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h4>Especificações Técnicas</h4>
+      <p>Torques, folgas de válvulas, pressões e tolerâncias de fábrica pra cada modelo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section">
+  <h2>Mais de 20 mil arquivos organizados por categoria</h2>
+  <p class="sub">Encontre o que precisa em segundos, não em horas.</p>
+  <div class="categories-grid">
+    <div class="category-card">
+      <div class="category-img"><img src="assets/category-pesados.jpg" alt="Caminhões pesados trafegando em rodovia"></div>
+      <h4>Caminhões Pesados</h4>
+      <p>Operação, manutenção, ajustes e diagnóstico para os principais caminhões pesados do Brasil.</p>
+      <div class="category-tags"><span>Volvo</span><span>Scania</span><span>Mercedes-Benz</span><span>DAF</span><span>MAN</span><span>Iveco</span><span>+Outros</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-img"><img src="assets/category-leves-medios.jpg" alt="Caminhões leves e médios de entrega em avenida urbana"></div>
+      <h4>Caminhões Leves e Médios</h4>
+      <p>Manuais de reparo e manutenção para caminhões leves e médios de entrega e distribuição.</p>
+      <div class="category-tags"><span>Ford Cargo</span><span>VW Delivery</span><span>Hyundai HR</span><span>Iveco Daily</span><span>Agrale</span><span>+Outros</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-img"><img src="assets/category-cavalos-carretas.jpg" alt="Cavalo mecânico com carreta em pátio logístico"></div>
+      <h4>Cavalos Mecânicos, Carretas e Implementos</h4>
+      <p>Manuais técnicos de operação, manutenção e diagnóstico para cavalos mecânicos e carretas.</p>
+      <div class="category-tags"><span>Randon</span><span>Librelato</span><span>Facchini</span><span>Guerra</span><span>Noma</span><span>+Outros</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VEJA O MATERIAL POR DENTRO -->
+<section class="material-section">
+  <div class="material-kicker">Sem surpresas na hora de comprar</div>
+  <h2>Veja o material por dentro</h2>
+  <p class="sub">Amostras reais de diagramas do acervo TruckLabs. Clique numa imagem pra ampliar.</p>
+  <div class="material-grid" data-lightbox-gallery>
+    <div class="material-card" data-full="assets/material/cavalo-mecanico-vista-geral-05-01.png" data-caption="Cavalo Mecânico — Vista Geral">
+      <div class="shot">
+        <img src="assets/material/cavalo-mecanico-vista-geral-05-01.png" alt="Diagrama: cavalo mecânico, vista geral e sistema de basculamento de cabine">
+        <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ampliar</span>
+      </div>
+      <div class="info">
+        <h4>Cavalo Mecânico — Vista Geral</h4>
+        <p>Vista externa completa do veículo com o circuito hidráulico de basculamento de cabine detalhado.</p>
+      </div>
+    </div>
+    <div class="material-card" data-full="assets/material/acoplamento-cavalo-carreta.png" data-caption="Sistema de Acoplamento">
+      <div class="shot">
+        <img src="assets/material/acoplamento-cavalo-carreta.png" alt="Diagrama: sistema de acoplamento entre cavalo mecânico e carreta">
+        <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ampliar</span>
+      </div>
+      <div class="info">
+        <h4>Sistema de Acoplamento</h4>
+        <p>Quinta roda, pino-rei, mangueiras de freio a ar e conector elétrico, com fotos em close.</p>
+      </div>
+    </div>
+    <div class="material-card" data-full="assets/material/freio-ar-14-22.png" data-caption="Sistema de Freio a Ar">
+      <div class="shot">
+        <img src="assets/material/freio-ar-14-22.png" alt="Diagrama do sistema de freio a ar de caminhão pesado">
+        <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ampliar</span>
+      </div>
+      <div class="info">
+        <h4>Sistema de Freio a Ar</h4>
+        <p>Vista geral completa dos 12 componentes do circuito pneumático, numerados e legendados.</p>
+      </div>
+    </div>
+    <div class="material-card" data-full="assets/material/suspensao-ar-07-14.png" data-caption="Suspensão a Ar — Eixo Traseiro">
+      <div class="shot">
+        <img src="assets/material/suspensao-ar-07-14.png" alt="Diagrama da suspensão a ar do eixo traseiro">
+        <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ampliar</span>
+      </div>
+      <div class="info">
+        <h4>Suspensão a Ar — Eixo Traseiro</h4>
+        <p>Bolsa de ar, amortecedor, válvula niveladora e barra de reação, com fotos de cada peça.</p>
+      </div>
+    </div>
+    <div class="material-card" data-full="assets/material/direcao-hidraulica-09-11.png" data-caption="Sistema de Direção Hidráulica">
+      <div class="shot">
+        <img src="assets/material/direcao-hidraulica-09-11.png" alt="Diagrama do sistema de direção hidráulica">
+        <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ampliar</span>
+      </div>
+      <div class="info">
+        <h4>Sistema de Direção Hidráulica</h4>
+        <p>Caixa de direção, bomba hidráulica, barra e terminais — com detalhamento de cada peça.</p>
+      </div>
+    </div>
+    <div class="material-card" data-full="assets/material/sistema-eletrico-18-05.png" data-caption="Sistema Elétrico">
+      <div class="shot">
+        <img src="assets/material/sistema-eletrico-18-05.png" alt="Diagrama esquemático do sistema elétrico do caminhão">
+        <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Ampliar</span>
+      </div>
+      <div class="info">
+        <h4>Sistema Elétrico</h4>
+        <p>Diagrama esquemático completo: bateria, alternador, ECU, central de fusíveis e iluminação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" data-lightbox>
+  <button class="lightbox-close" type="button" data-lightbox-close aria-label="Fechar">✕</button>
+  <figure>
+    <img src="" alt="" data-lightbox-img>
+    <figcaption data-lightbox-caption></figcaption>
+  </figure>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <h2>O que clientes estão falando</h2>
+  <p class="sub">Mecânicos, motoristas e frotistas que já têm acesso ao acervo.</p>
+  <div class="testimonial-carousel" data-testimonial-carousel>
+    <div class="testimonial-carousel__viewport" tabindex="0" role="region" aria-label="Depoimentos de clientes" aria-live="polite">
+      <div class="testimonial-carousel__track">
+        <article class="testimonial-carousel__slide" aria-label="Depoimento 1 de 4">
+          <div class="testimonial-carousel__card shot">
+            <img src="assets/provas-sociais/depoimento-1.webp" alt="Print de conversa: cliente diz que gostou muito dos manuais">
+          </div>
+        </article>
+        <article class="testimonial-carousel__slide" aria-label="Depoimento 2 de 4">
+          <div class="testimonial-carousel__card shot">
+            <img src="assets/provas-sociais/depoimento-2.webp" alt="Print de conversa com o cliente Luciano Paiva: conteúdo excelente">
+          </div>
+        </article>
+        <article class="testimonial-carousel__slide" aria-label="Depoimento 3 de 4">
+          <div class="testimonial-carousel__card shot">
+            <img src="assets/provas-sociais/depoimento-3.webp" alt="Print de grupo de clientes elogiando a plataforma">
+          </div>
+        </article>
+        <article class="testimonial-carousel__slide" aria-label="Depoimento 4 de 4">
+          <div class="testimonial-carousel__card shot">
+            <img src="assets/provas-sociais/depoimento-4.webp" alt="Print de conversa com o cliente Vinicius Silva: conteúdo excelente">
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="testimonial-carousel__controls">
+      <button class="testimonial-carousel__button" type="button" data-testimonial-prev aria-label="Depoimento anterior">‹</button>
+      <div class="testimonial-carousel__dots" data-testimonial-dots aria-label="Escolher depoimento"></div>
+      <button class="testimonial-carousel__button" type="button" data-testimonial-next aria-label="Próximo depoimento">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- BONUSES -->
+<section class="bonus-section">
+  <div class="bonus-kicker">Ao comprar hoje, você recebe</div>
+  <h2>Bônus Exclusivos</h2>
+  <p class="sub">Esses bônus são exclusivos pra quem adquire o Pacote Completo. Não vendemos separado.</p>
+  <div class="bonus-grid">
+    <div class="bonus-card">
+      <div class="bonus-img"><img src="assets/bonus-tacografo.jpg" alt="Manual do Tacógrafo Eletrônico"></div>
+      <div class="bonus-num">BÔNUS 1</div>
+      <h4>Manual do Tacógrafo Eletrônico e Legislação CONTRAN</h4>
+      <p>Guia completo sobre tacógrafo digital: obrigatoriedade, infrações comuns, calibração e boas práticas.</p>
+    </div>
+    <div class="bonus-card">
+      <div class="bonus-img"><img src="assets/bonus-checklist.jpg" alt="Checklist de inspeção de caminhão"></div>
+      <div class="bonus-num">BÔNUS 2</div>
+      <h4>Checklists de Inspeção e Manutenção</h4>
+      <p>PDFs prontos pra inspeção pré-viagem, freios, pneus e manutenção preventiva. Profissionaliza sua rotina.</p>
+    </div>
+    <div class="bonus-card">
+      <div class="bonus-img"><img src="assets/bonus-freio-ar.jpg" alt="Componentes de sistema de freio a ar"></div>
+      <div class="bonus-num">BÔNUS 3</div>
+      <h4>Acervo de Sistemas de Freio a Ar e Suspensão</h4>
+      <p>Conteúdo técnico focado em sistemas pneumáticos de caminhões pesados — material raro no mercado.</p>
+    </div>
+    <div class="bonus-card">
+      <div class="bonus-num">BÔNUS 4</div>
+      <h4>Grupo Exclusivo no WhatsApp</h4>
+      <p>Comunidade de mecânicos e motoristas. Tire dúvidas e receba avisos de novos conteúdos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="comprar">
+  <h2>Escolha seu plano</h2>
+  <p class="sub">Acesso imediato após a confirmação do pagamento. Compra 100% segura.</p>
+
+  <div class="countdown-box">
+    <div class="label">ESSA OFERTA EXPIRA EM:</div>
+    <div class="clock">
+      <div><span class="num" id="cdH">02</span><span class="unit">HORAS</span></div>
+      <div><span class="num">:</span></div>
+      <div><span class="num" id="cdM">59</span><span class="unit">MINUTOS</span></div>
+      <div><span class="num">:</span></div>
+      <div><span class="num" id="cdS">59</span><span class="unit">SEGUNDOS</span></div>
+    </div>
+  </div>
+
+  <div class="plans-grid">
+    <div class="plan-card best">
+      <div class="plan-badge-top">MELHOR CUSTO-BENEFÍCIO</div>
+      <div class="plan-name">TruckLabs</div>
+      <p class="plan-title">Pacote Completo</p>
+      <div class="price-tag">
+        <p class="from">De R$119,90</p>
+        <div class="price-main"><span class="currency">R$</span><span class="amount">67,00</span></div>
+        <p class="period">pagamento único • 1 ano de acesso</p>
+      </div>
+      <ul class="plan-features">
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>+20 mil arquivos técnicos completos</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 1:</strong> Manual do Tacógrafo</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 2:</strong> Checklists de Manutenção</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 3:</strong> Acervo de Freio a Ar</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 4:</strong> Grupo Exclusivo no WhatsApp</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>7 dias de garantia incondicional</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Download liberado + atualizações futuras</li>
+      </ul>
+      <a href="https://pay.wiapy.com/Sux_-3BUpxCn" class="btn-buy-card">QUERO O PACOTE COMPLETO</a>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-name">TruckLabs</div>
+      <p class="plan-title">Pacote Básico</p>
+      <div class="price-tag">
+        <p class="from">De R$97,00</p>
+        <div class="price-main"><span class="currency">R$</span><span class="amount">37,90</span></div>
+        <p class="period">pagamento único • 1 ano de acesso</p>
+      </div>
+      <ul class="plan-features">
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Metade do acervo (+10 mil arquivos)</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 1:</strong> Manual do Tacógrafo</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 2:</strong> Checklists de Manutenção</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 3:</strong> Acervo de Freio a Ar</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><strong>Bônus 4:</strong> Grupo Exclusivo no WhatsApp</li>
+        <li><svg class="chk-icon" viewBox="0 0 24 24"><path fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>7 dias de garantia</li>
+      </ul>
+      <a href="https://pay.wiapy.com/R4akvLTpYIM5" class="btn-buy-card">COMPRAR BÁSICO POR R$37,90</a>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+    <div class="guarantee-seal"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <h2>Risco Zero — Garantia Incondicional de 7 Dias</h2>
+    <p>Acesse a Plataforma TruckLabs por 7 dias completos. Se por qualquer motivo você não ficar satisfeito, basta entrar em contato e devolvemos 100% do seu dinheiro. Sem burocracia, sem perguntas.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <h2>Perguntas Frequentes</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>Como vou receber a Plataforma TruckLabs?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>Após a confirmação do pagamento, você recebe um e-mail com o link de acesso ao acervo digital (compartilhado via Google Drive). O acesso é imediato.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>Funciona no meu celular?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>Sim! Funciona em qualquer dispositivo — Android, iPhone, tablet ou computador.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>Preciso de internet para usar os arquivos?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>Só para baixar. Depois de salvo, você consulta tudo offline, mesmo sem sinal na estrada ou na oficina.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>E se não tiver o manual que preciso?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>Nosso acervo é um dos maiores disponíveis, mas se não encontrar o que precisa, é só falar com o suporte — buscamos e adicionamos regularmente.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>Os manuais são em português?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>A grande maioria está em português. Alguns materiais sem versão em português ficam em inglês ou espanhol.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>É pagamento único? Tem mensalidade?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>Pagamento único, sem mensalidade. Você paga uma vez e tem 1 ano de acesso, incluindo atualizações lançadas nesse período.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-toggle"><h4>Possui garantia?</h4><span class="faq-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></span></button>
+      <div class="faq-body"><p>Sim, 7 dias de garantia incondicional. Sem precisar justificar o motivo do reembolso.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <h2>Como funciona o acesso</h2>
+  <p class="sub">Do pagamento ao acervo na sua mão em 3 passos simples.</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="num">1</div>
+      <h4>Finalize sua compra</h4>
+      <p>Pague com cartão ou Pix. Cadastre seu melhor e-mail, de preferência uma conta Gmail.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">2</div>
+      <h4>Receba o link de acesso</h4>
+      <p>Em poucos minutos você recebe no e-mail o link de acesso à plataforma com o acervo completo.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">3</div>
+      <h4>Acesso liberado</h4>
+      <p>É só entrar, navegar pelas pastas e baixar o que precisar.</p>
+    </div>
+  </div>
+  <p class="how-note">Importante: a verificação de acesso é feita pelo Google Drive, por isso recomendamos usar uma conta Gmail na hora da compra.</p>
+</section>
+
+<!-- FOOTER -->
+<section class="footer-cta">
+  <h2>O material técnico que a<br><em>concessionária usa</em>,<br>agora no seu bolso</h2>
+  <a href="#comprar" class="btn-cta">QUERO MEU ACESSO AGORA</a>
+</section>
+<p class="footer-legal">TruckLabs — Plataforma de manuais técnicos digitais. Material de apoio; não substitui treinamento técnico oficial ou orientação de fabricante.</p>
+
+<script>
+document.querySelectorAll('.faq-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* Countdown por sessão (não reinicia a cada F5) */
+(function() {
+  const DURATION = 2 * 3600 + 59 * 60 + 59;
+  let endTime = sessionStorage.getItem('truckLabsTimerEnd');
+  if (!endTime) {
+    endTime = Date.now() + DURATION * 1000;
+    sessionStorage.setItem('truckLabsTimerEnd', endTime);
+  } else {
+    endTime = parseInt(endTime, 10);
+  }
+  const hEl = document.getElementById('cdH');
+  const mEl = document.getElementById('cdM');
+  const sEl = document.getElementById('cdS');
+  function tick() {
+    const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+    const h = Math.floor(remaining / 3600);
+    const m = Math.floor((remaining % 3600) / 60);
+    const s = remaining % 60;
+    hEl.textContent = String(h).padStart(2, '0');
+    mEl.textContent = String(m).padStart(2, '0');
+    sEl.textContent = String(s).padStart(2, '0');
+    if (remaining <= 0) clearInterval(timerInt);
+  }
+  tick();
+  const timerInt = setInterval(tick, 1000);
+})();
+
+/* Carrossel de depoimentos */
+document.querySelectorAll('[data-testimonial-carousel]').forEach(carousel => {
+  const viewport = carousel.querySelector('.testimonial-carousel__viewport');
+  const track = carousel.querySelector('.testimonial-carousel__track');
+  const slides = Array.from(carousel.querySelectorAll('.testimonial-carousel__slide'));
+  const prevButton = carousel.querySelector('[data-testimonial-prev]');
+  const nextButton = carousel.querySelector('[data-testimonial-next]');
+  const dotsContainer = carousel.querySelector('[data-testimonial-dots]');
+  let activeIndex = 0;
+  let touchStartX = 0;
+
+  const dots = slides.map((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'testimonial-carousel__dot';
+    dot.setAttribute('aria-label', `Mostrar depoimento ${index + 1}`);
+    dot.addEventListener('click', () => showSlide(index));
+    dotsContainer.appendChild(dot);
+    return dot;
+  });
+
+  function updateViewportHeight() {
+    viewport.style.height = `${slides[activeIndex].offsetHeight}px`;
+  }
+  function showSlide(index) {
+    activeIndex = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${activeIndex * 100}%)`;
+    slides.forEach((slide, slideIndex) => slide.setAttribute('aria-hidden', slideIndex !== activeIndex));
+    dots.forEach((dot, dotIndex) => dot.setAttribute('aria-current', dotIndex === activeIndex));
+    updateViewportHeight();
+  }
+  prevButton.addEventListener('click', () => showSlide(activeIndex - 1));
+  nextButton.addEventListener('click', () => showSlide(activeIndex + 1));
+  viewport.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') showSlide(activeIndex - 1);
+    if (event.key === 'ArrowRight') showSlide(activeIndex + 1);
+  });
+  viewport.addEventListener('touchstart', event => { touchStartX = event.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchend', event => {
+    const distance = touchStartX - event.changedTouches[0].clientX;
+    if (Math.abs(distance) > 50) showSlide(activeIndex + (distance > 0 ? 1 : -1));
+  });
+  window.addEventListener('resize', updateViewportHeight);
+  showSlide(0);
+});
+
+/* Lightbox da seção "Veja o material por dentro" */
+(function() {
+  const lightbox = document.querySelector('[data-lightbox]');
+  if (!lightbox) return;
+  const imgEl = lightbox.querySelector('[data-lightbox-img]');
+  const capEl = lightbox.querySelector('[data-lightbox-caption]');
+  const closeBtn = lightbox.querySelector('[data-lightbox-close]');
+
+  function openLightbox(src, caption) {
+    imgEl.src = src;
+    imgEl.alt = caption;
+    capEl.textContent = caption;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    imgEl.src = '';
+  }
+  document.querySelectorAll('.material-card').forEach(card => {
+    card.addEventListener('click', () => openLightbox(card.dataset.full, card.dataset.caption));
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
